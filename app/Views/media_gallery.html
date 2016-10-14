@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">        
+    <title>Silex Project</title>
+    <link href="http://vjs.zencdn.net/5.11.7/video-js.css" rel="stylesheet">    
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <style>
+
+        body {
+            background-attachment: scroll !important;
+            background-color: #343640;
+            background-image: url("http://static.tumblr.com/3nghtcy/cRImezufo/low_contrast_linen.png");
+            background-size: auto auto !important;
+        }
+
+        .header{
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">    
+        <header class="header">
+            <img src="https://5a5a57ff32a328601212-ee0df397c56b146e91fe14be42fa361d.ssl.cf1.rackcdn.com/icon/instagram_logos_app_icon/YyepHGHDvkl1wFkUHw8Y/Instagram-v051916_200.png" alt="Instagram logo">            
+            <h1 style="color:#FFFFFF">Instagram photos taken by tag name <span style='color:#ff5a5f'>#{{tag_name}}</span></h1>
+        </header>    
+        <div class="grid">        
+                {{# media }}
+                    <div class="grid-item">
+                    {{# video }}
+                        <video id="my-video" class="video-js" preload="auto" width="320" height="320" poster="{{ poster }}" data-setup='{"controls":true}'>
+                             <source src="{{ source }}" type="video/mp4" />
+                        </video>
+                    {{/ video }}
+                    {{# image }}
+                    <img class="media" src="{{ source }}"/>
+                    {{/ image }}
+                    {{# meta }}
+                        <div class="content">
+                            <div class="avatar" style="background-image: url({{ avatar }})"></div>
+                            <p>{{ username }}</p>
+                            <div class="comment">{{ comment }}</div>
+                            <span>media_id: {{ id }}</span>
+                        </div>
+                    {{/ meta }}
+                        </div>
+                    
+                {{/ media }}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="http://vjs.zencdn.net/5.11.7/video.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            setTimeout(function(){
+                $('.grid').masonry({
+                // options...
+                    itemSelector: '.grid-item',
+                    columnWidth: 340,
+                    gutter: 10
+                });
+            }, 200);            
+        });
+    </script>
+
+</body>
+</html>
